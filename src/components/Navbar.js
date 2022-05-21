@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CustomLink from "./CustomLink";
 
 const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <CustomLink to="/">Home</CustomLink>
       </li>
       <li tabIndex="0">
-        <Link to="/about">About</Link>
+        <CustomLink to="/about">About</CustomLink>
       </li>
       <li>
-        <Link to="/blog">blog</Link>
+        <CustomLink to="/blog">blog</CustomLink>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <CustomLink to="/login">Login</CustomLink>
       </li>
     </>
   );
