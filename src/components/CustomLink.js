@@ -7,7 +7,14 @@ function CustomLink({ children, to, ...props }) {
 
   return (
     <div>
-      <Link style={{ color: match ? "red" : "inherit" }} to={to} {...props}>
+      <Link
+        style={{
+          color: match ? "#77c3b1" : "inherit",
+          fontWeight: match ? "bold" : "normal",
+        }}
+        to={to}
+        {...props}
+      >
         {children}
       </Link>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo/android-chrome-512x512.png";
 import CustomLink from "./CustomLink";
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
         <CustomLink to="/about">About</CustomLink>
       </li>
       <li>
-        <CustomLink to="/blog">blog</CustomLink>
+        <CustomLink to="/blog">Blog</CustomLink>
       </li>
       <li>
         <CustomLink to="/login">Login</CustomLink>
@@ -47,6 +48,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to={`/`} className="btn btn-ghost normal-case text-xl">
+          <img src={logo} className="w-[2rem] mx-2" alt="" />
           Tools
         </Link>
       </div>
