@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
         <Link to={`/`} className="btn btn-ghost normal-case text-xl">
           <img src={logo} className="w-[2rem] mx-2" alt="" />
-          Tools
+          Toolify
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
