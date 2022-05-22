@@ -16,11 +16,21 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
+  let loginError;
   if (loading || gLoading) {
     return <Loading />;
   }
-
+  if (error || gError) {
+    loginError = (
+      <>
+        <div className="text-center w-full my-5 ">
+          <button class="btn btn-outline btn-error ">
+            {error?.message || gError?.message}
+          </button>
+        </div>
+      </>
+    );
+  }
   if (gUser || user) {
     console.log(gUser);
   }
@@ -101,7 +111,7 @@ const Login = () => {
                   )}
                 </label>
               </div>
-
+              {loginError}
               <input
                 className="btn btn-primary w-full max-w-xs"
                 type="submit"
