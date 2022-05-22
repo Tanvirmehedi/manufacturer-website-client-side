@@ -4,6 +4,7 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 
 const Login = () => {
@@ -16,11 +17,16 @@ const Login = () => {
     handleSubmit,
   } = useForm();
 
-  if (gUser) {
+  if (loading || gLoading) {
+    return <Loading />;
+  }
+
+  if (gUser || user) {
     console.log(gUser);
   }
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password);
   };
   return (
     <div className="my-10">
