@@ -1,26 +1,37 @@
 import React from "react";
 import {
-  useSignInWithEmailAndPassword,
+  useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
-
-const Login = () => {
+const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  // Error Variable
+
   let loginError;
+
+  //   Loading Component Return
   if (loading || gLoading) {
     return <Loading />;
   }
+
+  //   Error Handling
   if (error || gError) {
     loginError = (
       <>
@@ -32,19 +43,50 @@ const Login = () => {
       </>
     );
   }
+  //   Checking Users
+
   if (gUser || user) {
     console.log(gUser);
   }
+
+  //   Handling Form Data
+
   const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+    createUserWithEmailAndPassword(data.email, data.password);
+    console.log(data.email, data.password, data.name);
   };
+
   return (
     <div className="my-10">
       <div className="card max-w-md bg-base-100 shadow-xl mx-auto">
         <div className="mx-10 mb-10">
           <div className="mx-auto">
-            <h2 className="text-center text-2xl font-bold">Login</h2>
+            <h2 className="text-center text-2xl font-bold">SignUp</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-control w-full max-w-md">
+                <label className="label">
+                  <span className="label-text">What is your Name?</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Type Your Name"
+                  className="input input-bordered w-full"
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Name is required",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.name?.type === "required" && (
+                    <span className="label-text-alt text-red-600">
+                      {errors.name.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              {/* EMAIL FIELD START */}
               <div className="form-control w-full max-w-md">
                 <label className="label">
                   <span className="label-text">What is your Email?</span>
@@ -115,12 +157,12 @@ const Login = () => {
               <input
                 className="btn btn-primary w-full max-w-md"
                 type="submit"
-                value="Login"
+                value="SignUp"
               />
             </form>
             <p className="my-3">
-              Create New Account?
-              <Link className="text-primary px-1 " to="/signup">
+              Already have an account?
+              <Link className="text-primary px-1 " to="/login">
                 SignUp
               </Link>
             </p>
@@ -138,4 +180,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
