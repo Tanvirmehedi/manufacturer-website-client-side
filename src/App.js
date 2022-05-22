@@ -3,8 +3,10 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
+import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
 import PageNotFound from "./pages/PageNotFound";
+import Purchase from "./pages/Purchase/Purchase";
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/purchase"
+          element={
+            <RequireAuth>
+              <Purchase />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

@@ -5,7 +5,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 const SignUp = () => {
@@ -22,22 +22,23 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  // Error Variable
+  //  Variable
 
   let loginError;
+  const navigate = useNavigate();
 
   //   Loading Component Return
-  if (loading || gLoading) {
+  if (loading || gLoading || updating) {
     return <Loading />;
   }
 
   //   Error Handling
-  if (error || gError) {
+  if (error || gError || updateError) {
     loginError = (
       <>
         <div className="text-center w-full my-5 max-w-md">
           <button class="btn btn-outline btn-error w-full ">
-            {error?.message || gError?.message}
+            {error?.message || gError?.message || updateError?.message}
           </button>
         </div>
       </>
@@ -51,9 +52,10 @@ const SignUp = () => {
 
   //   Handling Form Data
 
-  const onSubmit = (data) => {
-    createUserWithEmailAndPassword(data.email, data.password);
-    console.log(data.email, data.password, data.name);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    navigate("/");
   };
 
   return (

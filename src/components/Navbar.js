@@ -1,13 +1,20 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo/android-chrome-512x512.png";
+import auth from "../firebase.init";
 import CustomLink from "./CustomLink";
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
   const menuItems = (
     <>
       <li>
         <CustomLink to="/">Home</CustomLink>
+      </li>{" "}
+      <li>
+        <CustomLink to="/purchase">Purchase</CustomLink>
       </li>
       <li tabIndex="0">
         <CustomLink to="/about">About</CustomLink>
@@ -15,8 +22,23 @@ const Navbar = () => {
       <li>
         <CustomLink to="/blog">Blog</CustomLink>
       </li>
+      {user ? (
+        <li>
+          <CustomLink className="font-bold" to="/dashboard">
+            Dashboard
+          </CustomLink>
+        </li>
+      ) : (
+        ""
+      )}
       <li>
-        <CustomLink to="/login">Login</CustomLink>
+        {user ? (
+          <button onClick={() => signOut(auth)} className="btn btn-ghost">
+            LogOut
+          </button>
+        ) : (
+          <CustomLink to="/login">Login</CustomLink>
+        )}
       </li>
     </>
   );
