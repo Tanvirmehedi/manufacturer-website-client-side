@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../components/Banner";
 import Branding from "../components/Branding";
+import HomeProducts from "../components/HomeProducts";
 
 const Home = () => {
   return (
@@ -32,6 +33,9 @@ const Home = () => {
             find the right fit for you or your corporation.
           </p>
         </div>
+      </div>
+      <div>
+        <HomeProducts />
       </div>
     </div>
   );

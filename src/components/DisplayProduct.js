@@ -1,0 +1,25 @@
+import React from "react";
+
+const DisplayProduct = ({ data }) => {
+  const { name, imageUrl, description, price, quantity } = data;
+  return (
+    <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <figure>
+        <img src={imageUrl} alt={name} className=" max-w-xs max-h-40" />
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title text-accent">{name}</h2>
+        <p className="text-slate-500">{description.slice(0, 100)}</p>
+        <p className="flex justify-around items-center">
+          <span className="text-lg">Quantity: {quantity}</span>
+          <span className="text-lg">Price: ${price}</span>
+        </p>
+        <div className="card-actions justify-end">
+          <button className="btn btn-primary">Order</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DisplayProduct;
