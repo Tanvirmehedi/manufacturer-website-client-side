@@ -21,6 +21,9 @@ const Navbar = () => {
       </li>
       <li>
         <CustomLink to="/blog">Blog</CustomLink>
+      </li>{" "}
+      <li>
+        <CustomLink to="/addproduct">Add Product</CustomLink>
       </li>
       {user ? (
         <li>

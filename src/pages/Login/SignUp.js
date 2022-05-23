@@ -37,7 +37,7 @@ const SignUp = () => {
     loginError = (
       <>
         <div className="text-center w-full my-5 max-w-md">
-          <button class="btn btn-outline btn-error w-full ">
+          <button className="btn btn-outline btn-error w-full ">
             {error?.message || gError?.message || updateError?.message}
           </button>
         </div>
