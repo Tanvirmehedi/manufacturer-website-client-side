@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 const AddAProduct = () => {
   const handelForm = (event) => {
     event.preventDefault();
-    const name = event.target.name.value;
+    const name = event.target.productName.value;
     const imageUrl = event.target.imgUrl.value;
     const description = event.target.description.value;
     const price = event.target.price.value;
@@ -36,10 +36,10 @@ const AddAProduct = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {
-            toast(`${data.product.name} Successfully Added`);
+            toast(`${product.name} Successfully Added`);
             event.target.reset();
           } else {
-            toast.error(`${data.product.name} Already Added`);
+            toast.error(`${data?.product?.name} Already Added`);
             console.log(data);
           }
         });
@@ -63,7 +63,7 @@ const AddAProduct = () => {
                   type="text"
                   placeholder="Name"
                   className="input input-bordered"
-                  name="name"
+                  name="productName"
                 />
               </div>
               <div className="form-control">
