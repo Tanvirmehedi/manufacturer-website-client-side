@@ -1,5 +1,5 @@
 import React from "react";
-
+import { toast } from "react-toastify";
 const AddAProduct = () => {
   const handelForm = (event) => {
     event.preventDefault();
@@ -9,14 +9,41 @@ const AddAProduct = () => {
     const price = event.target.price.value;
     const quantity = event.target.quantity.value;
 
-    const data = {
+    const product = {
       name,
       imageUrl,
       description,
       price,
       quantity,
     };
-    console.log(data);
+
+    if (
+      !product.name ||
+      !product.imageUrl ||
+      !product.description ||
+      !product.price ||
+      !product.quantity
+    ) {
+      toast("Must Have to fill all field !!");
+    } else {
+      fetch("http://localhost:5000/product", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            toast(`${data.product.name} Successfully Added`);
+            event.target.reset();
+          } else {
+            toast.error(`${data.product.name} Already Added`);
+            console.log(data);
+          }
+        });
+    }
   };
   return (
     <div className="my-10">
