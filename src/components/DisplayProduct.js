@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 const DisplayProduct = ({ data }) => {
+  const [hover, setHover] = useState(false);
+  console.log(hover);
   const { name, imageUrl, description, price, quantity } = data;
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl">
+    <div
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}
+      className="card card-compact w-96 bg-base-100 shadow-xl"
+    >
       <figure>
-        <img src={imageUrl} alt={name} className=" max-w-xs max-h-40" />
+        <img
+          src={imageUrl}
+          alt={name}
+          className={`max-w-xs max-h-40  transition-all ${
+            !hover ? "scale-100" : "scale-110"
+          }`}
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-accent">{name}</h2>
