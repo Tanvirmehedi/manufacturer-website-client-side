@@ -3,11 +3,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
 import AddAProduct from "./pages/ManageProduct/AddAProduct";
+import MyProfile from "./pages/MyProfile/MyProfile";
 import PageNotFound from "./pages/PageNotFound";
 import Purchase from "./pages/Purchase/Purchase";
 
@@ -17,7 +19,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/addproduct" element={<AddAProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
@@ -28,6 +29,19 @@ function App() {
             </RequireAuth>
           }
         />
+
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="addproduct" element={<AddAProduct />} />
+          <Route path="myprofile" element={<MyProfile />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

@@ -40,7 +40,6 @@ const AddAProduct = () => {
             event.target.reset();
           } else {
             toast.error(`${data?.product?.name} Already Added`);
-            console.log(data);
           }
         });
     }
@@ -48,7 +47,7 @@ const AddAProduct = () => {
   return (
     <div className="my-10">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="card w-full shadow-2xl bg-base-100 max-w-md">
+        <div className=" w-full shadow-2xl bg-base-100 max-w-md">
           <div className="card-body">
             <h2 className="text-center uppercase text-accent font-bold text-xl">
               Add Product

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const DisplayProduct = ({ data }) => {
   const [hover, setHover] = useState(false);
-  console.log(hover);
   const { name, imageUrl, description, price, quantity } = data;
   return (
     <div

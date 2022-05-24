@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 const SignUp = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
@@ -22,6 +23,7 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  const [token] = useToken(gUser || user);
   //  Variable
 
   let loginError;
@@ -46,8 +48,8 @@ const SignUp = () => {
   }
   //   Checking Users
 
-  if (gUser || user) {
-    console.log(gUser);
+  if (token) {
+    navigate("/");
   }
 
   //   Handling Form Data
@@ -55,7 +57,6 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
-    navigate("/");
   };
 
   return (
@@ -165,7 +166,7 @@ const SignUp = () => {
             <p className="my-3">
               Already have an account?
               <Link className="text-primary px-1 " to="/login">
-                SignUp
+                LogIn
               </Link>
             </p>
             <div className="divider">OR</div>

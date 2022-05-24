@@ -13,8 +13,8 @@ const HomeProducts = () => {
   return (
     <div className="container mx-auto my-10">
       <div className="grid md:grid-cols-3 gap-10 justify-items-center">
-        {data.map((product) => {
-          return <DisplayProduct key={product._id} data={product} />;
+        {data?.map((product) => {
+          return <DisplayProduct key={product?._id} data={product} />;
         })}
       </div>
     </div>
