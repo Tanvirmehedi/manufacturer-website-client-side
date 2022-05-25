@@ -8,9 +8,9 @@ const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
 
   const { data, isLoading } = useQuery("product", () =>
-    fetch(`http://localhost:5000/purchase?userEmail=${user.email}`).then(
-      (res) => res.json()
-    )
+    fetch(
+      `https://young-lake-61837.herokuapp.com/purchase?userEmail=${user.email}`
+    ).then((res) => res.json())
   );
   if (isLoading || loading) {
     return <Loading />;

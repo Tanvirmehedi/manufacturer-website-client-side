@@ -5,7 +5,9 @@ import Loading from "./Loading";
 
 const HomeProducts = () => {
   const { data, isLoading } = useQuery("products", () =>
-    fetch("http://localhost:5000/products").then((res) => res.json())
+    fetch("https://young-lake-61837.herokuapp.com/products").then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading />;

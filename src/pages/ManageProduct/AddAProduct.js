@@ -28,7 +28,7 @@ const AddAProduct = () => {
     ) {
       toast("Must Have to fill all field !!");
     } else {
-      fetch("http://localhost:5000/product", {
+      fetch("https://young-lake-61837.herokuapp.com/product", {
         method: "POST",
         headers: {
           "content-type": "application/json",

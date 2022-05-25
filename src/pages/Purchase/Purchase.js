@@ -8,7 +8,9 @@ const Purchase = () => {
   const { id } = useParams();
 
   const { data, isLoading } = useQuery("product", () =>
-    fetch(`http://localhost:5000/products/${id}`).then((res) => res.json())
+    fetch(`https://young-lake-61837.herokuapp.com/products/${id}`).then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading />;
