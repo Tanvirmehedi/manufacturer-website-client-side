@@ -13,9 +13,6 @@ const Navbar = () => {
       <li>
         <CustomLink to="/">Home</CustomLink>
       </li>{" "}
-      <li>
-        <CustomLink to="/purchase">Purchase</CustomLink>
-      </li>
       <li tabIndex="0">
         <CustomLink to="/about">About</CustomLink>
       </li>
@@ -29,7 +26,13 @@ const Navbar = () => {
       )}
       <li>
         {user ? (
-          <button onClick={() => signOut(auth)} className="btn btn-ghost">
+          <button
+            onClick={() => {
+              signOut(auth);
+              localStorage.removeItem("accessToken");
+            }}
+            className="btn btn-ghost"
+          >
             LogOut
           </button>
         ) : (

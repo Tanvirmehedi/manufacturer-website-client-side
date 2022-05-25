@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const DisplayProduct = ({ data }) => {
   const [hover, setHover] = useState(false);
-  const { name, imageUrl, description, price, quantity } = data;
+  const [disabled] = useState(false);
+  const { name, imageUrl, description, price, quantity, _id } = data;
+
   return (
     <div
       onMouseOver={() => setHover(true)}
@@ -25,8 +28,23 @@ const DisplayProduct = ({ data }) => {
           <span className="text-lg">Quantity: {quantity}</span>
           <span className="text-lg">Price: ${price}</span>
         </p>
+        <p className="text-center">
+          <span className="text-lg">
+            Minimum Order : {data?.minimumOrder ? data?.minimumOrder : 10}
+          </span>
+        </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Order</button>
+          <Link
+            to={`/purchase/${_id}`}
+            disabled={
+              parseInt(quantity) < parseInt(data?.minimumOrder) && !disabled
+            }
+            className="btn btn-primary"
+          >
+            {parseInt(quantity) < parseInt(data?.minimumOrder)
+              ? "OutOfStock"
+              : "Order Now"}
+          </Link>
         </div>
       </div>
     </div>

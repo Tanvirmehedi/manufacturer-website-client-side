@@ -19,8 +19,14 @@ const useToken = (user) => {
         .then((data) => {
           if (data.upsertedCount > 0) {
             toast.success("Data Added on DataBase");
+            const accessToken = data.token;
+            localStorage.setItem("accessToken", accessToken);
+            setToken(accessToken);
           } else {
-            toast.error("Already an user");
+            toast("Already an user");
+            const accessToken = data.token;
+            localStorage.setItem("accessToken", accessToken);
+            setToken(accessToken);
           }
         });
     }

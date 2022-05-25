@@ -8,6 +8,7 @@ const AddAProduct = () => {
     const description = event.target.description.value;
     const price = event.target.price.value;
     const quantity = event.target.quantity.value;
+    const minimumOrder = event.target.minimumOrder.value;
 
     const product = {
       name,
@@ -15,6 +16,7 @@ const AddAProduct = () => {
       description,
       price,
       quantity,
+      minimumOrder,
     };
 
     if (
@@ -109,6 +111,18 @@ const AddAProduct = () => {
                   placeholder="Quantity"
                   className="input input-bordered"
                   name="quantity"
+                />
+              </div>
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Minimum Order Quantity</span>
+                </label>
+                <input
+                  type="number"
+                  placeholder="Order Quantity"
+                  className="input input-bordered"
+                  name="minimumOrder"
                 />
               </div>
 
