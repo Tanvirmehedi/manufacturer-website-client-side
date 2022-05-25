@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
-
 const DisplayPurchase = ({ product }) => {
   const [user, loading] = useAuthState(auth);
   const { _id, name, imageUrl, price, quantity, minimumOrder } = product;
@@ -28,12 +28,23 @@ const DisplayPurchase = ({ product }) => {
     const purchaseData = {
       orderId: _id,
       userName: user?.displayName,
+      productName: name,
       userEmail: user?.email,
       orderQuantity: inputValue,
       price: parseInt(inputValue) * parseInt(price),
       image: imageUrl,
     };
-    console.log(purchaseData);
+    fetch("http://localhost:5000/purchase", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(purchaseData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success(`${name} is successfully Purchased!!`);
+      });
   };
   return (
     <>
