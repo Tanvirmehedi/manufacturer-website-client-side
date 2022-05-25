@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../../components/Loading";
+import auth from "../../firebase.init";
 
 const DisplayPurchase = ({ product }) => {
-  const { name, imageUrl, price, quantity, minimumOrder } = product;
+  const [user, loading] = useAuthState(auth);
+  const { _id, name, imageUrl, price, quantity, minimumOrder } = product;
   const [readOnly, setReadOnly] = useState(false);
+  const [inputValue, setInputValue] = useState(minimumOrder);
   const handelInput = (e) => {
     if (
-      parseInt(e.target.value) > parseInt(quantity) ||
+      parseInt(e.target.value) >= parseInt(quantity) ||
       parseInt(e.target.value) < 1 ||
       parseInt(e.target.value) < parseInt(minimumOrder)
     ) {
@@ -13,11 +18,27 @@ const DisplayPurchase = ({ product }) => {
     } else {
       setReadOnly(false);
     }
+    setInputValue(e.target.value);
+  };
+  if (loading) {
+    return <Loading />;
+  }
+
+  const handelSubmit = () => {
+    const purchaseData = {
+      orderId: _id,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      orderQuantity: inputValue,
+      price: parseInt(inputValue) * parseInt(price),
+      image: imageUrl,
+    };
+    console.log(purchaseData);
   };
   return (
     <>
-      <div className="card card-side bg-base-100 shadow-xl relative ">
-        <figure className="w-60 h-60 relative text-center m-4">
+      <div className="lg:card lg:card-side lg:bg-base-100 lg:shadow-xl lg:relative ">
+        <figure className="w-60 h-60 relative text-center m-4 ">
           <img
             src={imageUrl}
             className="max-h-full max-w-full align-middle inline-block border-2 p-2 rounded-md "
@@ -25,7 +46,6 @@ const DisplayPurchase = ({ product }) => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title max-w-xs">Your Name :{name}</h2>
           <h2 className="card-title max-w-xs">{name}</h2>
           <h3 className="text-xl">Price: ${price}</h3>
           <h3 className="text-xl">Available Quantity: {quantity}</h3>
@@ -38,9 +58,14 @@ const DisplayPurchase = ({ product }) => {
               defaultValue={minimumOrder}
             />
           </div>
-
+          <h2 className="text-xl">Your Name : {user?.displayName}</h2>
+          <h2 className="text-xl">Email : {user?.email}</h2>
           <div className="card-actions justify-end my-4 ">
-            <button disabled={readOnly} className="btn btn-primary">
+            <button
+              disabled={readOnly}
+              onClick={handelSubmit}
+              className="btn btn-primary"
+            >
               Purchase Now
             </button>
           </div>
