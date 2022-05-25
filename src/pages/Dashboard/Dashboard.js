@@ -38,6 +38,17 @@ const Dashboard = () => {
               </li>
             </div>
           </div>
+          {/* -------------------------------------------------- */}{" "}
+          {/* ------------------------------------------------ */}
+          <div className="collapse bg-accent rounded-lg my-2 ">
+            <input type="checkbox" />
+            <div className="collapse-title font-semibold">Order</div>
+            <div className="collapse-content bg-accent">
+              <li>
+                <Link to="myorder">My Order</Link>
+              </li>
+            </div>
+          </div>
           {/* -------------------------------------------------- */}
         </ul>
       </div>

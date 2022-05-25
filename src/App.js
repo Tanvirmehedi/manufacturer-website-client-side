@@ -10,6 +10,7 @@ import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
 import AddAProduct from "./pages/ManageProduct/AddAProduct";
 import MyProfile from "./pages/MyProfile/MyProfile";
+import MyOrder from "./pages/Order/MyOrder";
 import PageNotFound from "./pages/PageNotFound";
 import Purchase from "./pages/Purchase/Purchase";
 
@@ -41,6 +42,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="addproduct" element={<AddAProduct />} />
           <Route path="myprofile" element={<MyProfile />} />
+          <Route path="myorder" element={<MyOrder />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
