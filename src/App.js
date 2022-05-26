@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import DashboardHome from "./pages/Dashboard/DashboardHome";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import RequireAuth from "./pages/Login/RequireAuth";
@@ -32,18 +33,19 @@ function App() {
         />
 
         <Route
-          path="dashboard"
+          path="/dashboard"
           element={
             <RequireAuth>
               <Dashboard />
             </RequireAuth>
           }
         >
-          <Route index element={<Home />} />
+          <Route index element={<DashboardHome />} />
           <Route path="addproduct" element={<AddAProduct />} />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="myorder" element={<MyOrder />} />
         </Route>
+
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

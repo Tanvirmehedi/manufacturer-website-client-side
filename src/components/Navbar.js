@@ -1,12 +1,16 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/android-chrome-512x512.png";
 import auth from "../firebase.init";
 import CustomLink from "./CustomLink";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const handleMobileDrawer = () => {
+    navigate("/dashboard");
+  };
   const [user] = useAuthState(auth);
   const menuItems = (
     <>
@@ -20,7 +24,7 @@ const Navbar = () => {
         <CustomLink to="/blog">Blog</CustomLink>
       </li>
       {user && (
-        <li>
+        <li className="hidden lg:block">
           <CustomLink to="/dashboard">Dashboard</CustomLink>
         </li>
       )}
@@ -76,27 +80,30 @@ const Navbar = () => {
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
-      <div className="navbar-end lg:hidden">
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      {user && (
+        <div className="navbar-end lg:hidden">
+          <label
+            onClick={handleMobileDrawer}
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h8m-8 6h16"
-            />
-          </svg>
-        </label>
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+        </div>
+      )}
     </div>
   );
 };

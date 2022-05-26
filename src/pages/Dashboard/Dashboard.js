@@ -14,7 +14,7 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 overflow-y-auto w-60 lg:w-70 bg-secondary text-base-content ">
+        <ul className="menu p-4 overflow-y-auto w-60 lg:w-60 bg-secondary text-base-content ">
           {/* <!-- Sidebar content here --> */}
           <div className="collapse bg-accent rounded-lg my-2 ">
             <input type="checkbox" />
@@ -22,9 +22,6 @@ const Dashboard = () => {
             <div className="collapse-content bg-accent">
               <li>
                 <Link to="addproduct">Add Product</Link>
-              </li>
-              <li>
-                <Link to={""}>Sidebar Item 2</Link>
               </li>
             </div>
           </div>
