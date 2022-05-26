@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allusers")
+    fetch("https://boiling-eyrie-02929.herokuapp.com/allusers")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);

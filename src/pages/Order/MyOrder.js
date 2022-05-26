@@ -9,12 +9,15 @@ const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const { data, isLoading } = useQuery("product", () =>
-    fetch(`http://localhost:5000/purchase?userEmail=${user.email}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-    }).then((res) => {
+    fetch(
+      `https://boiling-eyrie-02929.herokuapp.com/purchase?userEmail=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    ).then((res) => {
       if (res.status === 401 || res.status === 403) {
         navigate("/");
       }
