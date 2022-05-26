@@ -45,7 +45,14 @@ function App() {
           }
         >
           <Route index element={<DashboardHome />} />
-          <Route path="addproduct" element={<AddAProduct />} />
+          <Route
+            path="addproduct"
+            element={
+              <RequireAdmin>
+                <AddAProduct />
+              </RequireAdmin>
+            }
+          />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="myorder" element={<MyOrder />} />
           <Route

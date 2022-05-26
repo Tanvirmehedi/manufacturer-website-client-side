@@ -21,15 +21,17 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-60 lg:w-60 bg-secondary text-base-content ">
           {/* <!-- Sidebar content here --> */}
-          <div className="collapse bg-accent rounded-lg my-2 ">
-            <input type="checkbox" />
-            <div className="collapse-title font-semibold">Menage Product</div>
-            <div className="collapse-content bg-accent">
-              <li>
-                <Link to="addproduct">Add Product</Link>
-              </li>
+          {admin && (
+            <div className="collapse bg-accent rounded-lg my-2 ">
+              <input type="checkbox" />
+              <div className="collapse-title font-semibold">Menage Product</div>
+              <div className="collapse-content bg-accent">
+                <li>
+                  <Link to="addproduct">Add Product</Link>
+                </li>
+              </div>
             </div>
-          </div>
+          )}
           {/* ------------------------------------------------ */}
           <div className="collapse bg-accent rounded-lg my-2 ">
             <input type="checkbox" />
