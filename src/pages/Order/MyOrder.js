@@ -1,24 +1,33 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 
 const MyOrder = () => {
   const [user, loading] = useAuthState(auth);
-
+  const navigate = useNavigate();
   const { data, isLoading } = useQuery("product", () =>
-    fetch(
-      `https://young-lake-61837.herokuapp.com/purchase?userEmail=${user.email}`
-    ).then((res) => res.json())
+    fetch(`http://localhost:5000/purchase?userEmail=${user.email}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
+      if (res.status === 401 || res.status === 403) {
+        navigate("/");
+      }
+      return res.json();
+    })
   );
   if (isLoading || loading) {
     return <Loading />;
   }
   return (
-    <div>
-      <div class="overflow-x-auto mt-4">
-        <table class="table table-zebra w-full">
+    <div className="px-8">
+      <div className="overflow-x-auto mt-4">
+        <table className="table table-zebra w-full">
           <thead>
             <tr>
               <th></th>
@@ -32,7 +41,7 @@ const MyOrder = () => {
           <tbody>
             {data.map((order, index) => {
               return (
-                <tr>
+                <tr key={index}>
                   <th>{index + 1}</th>
                   <td>{order?.userName}</td>
                   <td>{order?.productName}</td>

@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import AllUsers from "./pages/Dashboard/AllUsers";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardHome from "./pages/Dashboard/DashboardHome";
 import Home from "./pages/Home";
@@ -44,6 +45,7 @@ function App() {
           <Route path="addproduct" element={<AddAProduct />} />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="myorder" element={<MyOrder />} />
+          <Route path="allusers" element={<AllUsers />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

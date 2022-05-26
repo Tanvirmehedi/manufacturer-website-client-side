@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col items-center relative">
+      <div className="drawer-content flex flex-col items-center relative ">
         <h1 className="bg-secondary px-3 w-full text-center sticky top-0 z-50 text-xl">
           Dashboard
         </h1>
@@ -31,11 +31,12 @@ const Dashboard = () => {
             <div className="collapse-title font-semibold">Profile</div>
             <div className="collapse-content bg-accent">
               <li>
-                <Link to="myprofile">My profile</Link>
+                <Link to="myprofile">Update profile</Link>
               </li>
             </div>
           </div>
-          {/* -------------------------------------------------- */}{" "}
+          {/* -------------------------------------------------- */}
+
           {/* ------------------------------------------------ */}
           <div className="collapse bg-accent rounded-lg my-2 ">
             <input type="checkbox" />
@@ -43,6 +44,17 @@ const Dashboard = () => {
             <div className="collapse-content bg-accent">
               <li>
                 <Link to="myorder">My Order</Link>
+              </li>
+            </div>
+          </div>
+          {/* -------------------------------------------------- */}
+          {/* ------------------------------------------------ */}
+          <div className="collapse bg-accent rounded-lg my-2 ">
+            <input type="checkbox" />
+            <div className="collapse-title font-semibold">Users</div>
+            <div className="collapse-content bg-accent">
+              <li>
+                <Link to="allusers">All Users</Link>
               </li>
             </div>
           </div>
