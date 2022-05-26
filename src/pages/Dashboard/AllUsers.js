@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useQuery } from "react-query";
+import Loading from "../../components/Loading";
+import DisplayUser from "./DisplayUser";
 
 const AllUsers = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch("https://boiling-eyrie-02929.herokuapp.com/allusers")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-      });
-  }, []);
-  console.log(users);
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch("https://boiling-eyrie-02929.herokuapp.com/allusers", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
+  );
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div>
-      <div class="overflow-x-auto my-10">
-        <table class="table table-zebra w-full ">
+      <div className="overflow-x-auto my-10">
+        <table className="table table-zebra w-full ">
           <thead>
             <tr>
               <th>SN</th>
@@ -25,18 +33,12 @@ const AllUsers = () => {
           <tbody>
             {users.map((user, index) => {
               return (
-                <tr>
-                  <th>{index + 1}</th>
-                  <td>{user?.email}</td>
-                  <td>
-                    <Link
-                      to={`/users/${user?._id}`}
-                      className="btn btn-xs btn-secondary"
-                    >
-                      Details
-                    </Link>
-                  </td>
-                </tr>
+                <DisplayUser
+                  refetch={refetch}
+                  key={index}
+                  index={index}
+                  user={user}
+                />
               );
             })}
           </tbody>

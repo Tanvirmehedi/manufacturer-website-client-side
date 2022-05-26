@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardHome from "./pages/Dashboard/DashboardHome";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
+import RequireAdmin from "./pages/Login/RequireAdmin";
 import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
 import AddAProduct from "./pages/ManageProduct/AddAProduct";
@@ -45,7 +46,14 @@ function App() {
           <Route path="addproduct" element={<AddAProduct />} />
           <Route path="myprofile" element={<MyProfile />} />
           <Route path="myorder" element={<MyOrder />} />
-          <Route path="allusers" element={<AllUsers />} />
+          <Route
+            path="allusers"
+            element={
+              <RequireAdmin>
+                <AllUsers />
+              </RequireAdmin>
+            }
+          />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
