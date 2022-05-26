@@ -23,6 +23,9 @@ const Navbar = () => {
       <li>
         <CustomLink to="/blog">Blog</CustomLink>
       </li>
+      <li>
+        <CustomLink to="/myportfolio">My Portfolio</CustomLink>
+      </li>
       {user && (
         <li className="hidden lg:block">
           <CustomLink to="/dashboard">Dashboard</CustomLink>

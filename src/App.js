@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardHome from "./pages/Dashboard/DashboardHome";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
+import MyPortfolio from "./pages/Login/MyPortfolio/MyPortfolio";
 import RequireAdmin from "./pages/Login/RequireAdmin";
 import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/myportfolio" element={<MyPortfolio />} />
         <Route
           path="/purchase/:id"
           element={
