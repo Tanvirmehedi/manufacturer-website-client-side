@@ -34,7 +34,7 @@ const DisplayPurchase = ({ product }) => {
       price: parseInt(inputValue) * parseInt(price),
       image: imageUrl,
     };
-    fetch("https://young-lake-61837.herokuapp.com/purchase", {
+    fetch("https://boiling-eyrie-02929.herokuapp.com/purchase", {
       method: "POST",
       headers: {
         "content-type": "application/json",

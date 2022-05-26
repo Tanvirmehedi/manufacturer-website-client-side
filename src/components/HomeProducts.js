@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 const HomeProducts = () => {
   const { data, isLoading } = useQuery("products", () =>
-    fetch("https://young-lake-61837.herokuapp.com/products").then((res) =>
+    fetch("https://boiling-eyrie-02929.herokuapp.com/products").then((res) =>
       res.json()
     )
   );

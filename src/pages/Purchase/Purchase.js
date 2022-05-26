@@ -8,8 +8,8 @@ const Purchase = () => {
   const { id } = useParams();
 
   const { data, isLoading } = useQuery("product", () =>
-    fetch(`https://young-lake-61837.herokuapp.com/products/${id}`).then((res) =>
-      res.json()
+    fetch(`https://boiling-eyrie-02929.herokuapp.com/products/${id}`).then(
+      (res) => res.json()
     )
   );
   if (isLoading) {
