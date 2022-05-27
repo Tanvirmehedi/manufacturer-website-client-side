@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import Loading from "../../components/Loading";
 import auth from "../../firebase.init";
 
@@ -12,7 +13,7 @@ const MyProfile = () => {
 
   const handelForm = (event) => {
     event.preventDefault();
-    const name = user.displayName;
+    const name = event.target.userName.value;
     const email = user.email;
     const location = event.target.location.value;
     const mobile = event.target.mobile.value;
@@ -27,6 +28,20 @@ const MyProfile = () => {
       linkedin,
       education,
     };
+
+    fetch(`http://localhost:5000/user/info/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(profileData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast.success("Update Successful!!");
+        }
+      });
   };
   return (
     <div className="my-10 w-3/4 mx-auto">
@@ -43,8 +58,8 @@ const MyProfile = () => {
                   type="text"
                   placeholder="Name"
                   className="input input-bordered w-full max-w-xs"
-                  value={user?.displayName}
-                  readOnly
+                  defaultValue={user?.displayName}
+                  name="userName"
                 />
               </div>
               {/* ------------------------------------- */}
