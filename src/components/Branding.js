@@ -2,7 +2,7 @@ import React from "react";
 
 const Branding = (props) => {
   return (
-    <div className="md:-mt-32 hover:scale-105 transition-all">
+    <div className="md:-mt-32 hover:scale-105 transition-all mx-8">
       <div className="card w-[100%] my-4 bg-slate-50 shadow-2xl before:opacity-50 image-full mx-auto ">
         <figure>
           <img src={props.image} alt="Shoes" className="w-full " />
