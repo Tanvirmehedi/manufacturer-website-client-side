@@ -5,13 +5,18 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo/android-chrome-512x512.png";
 import auth from "../firebase.init";
 import CustomLink from "./CustomLink";
+import Loading from "./Loading";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const handleMobileDrawer = () => {
     navigate("/dashboard");
   };
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const email = user?.email.split("@");
+  if (loading) {
+    return <Loading />;
+  }
   const menuItems = (
     <>
       <li>
@@ -40,10 +45,10 @@ const Navbar = () => {
             }}
             className="btn btn-ghost"
           >
-            LogOut
+            LogOut-<span className="mx-1 font-normal text-xs">{email[0]}</span>
           </button>
         ) : (
-          <CustomLink to="/login">Login</CustomLink>
+          <CustomLink to="/login">Login </CustomLink>
         )}
       </li>
     </>

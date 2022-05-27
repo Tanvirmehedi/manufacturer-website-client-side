@@ -46,6 +46,19 @@ const Dashboard = () => {
             </div>
           </div>
           {/* -------------------------------------------------- */}
+          {/* ------------------------------------------------ */}
+          {admin && (
+            <div className="collapse bg-accent rounded-lg my-2 ">
+              <input type="checkbox" />
+              <div className="collapse-title font-semibold">Blog</div>
+              <div className="collapse-content bg-accent">
+                <li>
+                  <Link to="createblog">Create Blog</Link>
+                </li>
+              </div>
+            </div>
+          )}
+          {/* -------------------------------------------------- */}
 
           {/* ------------------------------------------------ */}
           {!admin && (

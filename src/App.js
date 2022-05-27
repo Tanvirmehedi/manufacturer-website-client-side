@@ -3,6 +3,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Blog from "./pages/Blog/Blog";
+import CreateBlog from "./pages/Blog/CreateBlog";
 import AllUsers from "./pages/Dashboard/AllUsers";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardHome from "./pages/Dashboard/DashboardHome";
@@ -28,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/myportfolio" element={<MyPortfolio />} />
+        <Route path="/blog" element={<Blog />} />
         <Route
           path="/purchase/:id"
           element={
@@ -55,6 +58,14 @@ function App() {
             }
           />
           <Route path="myprofile" element={<MyProfile />} />
+          <Route
+            path="createblog"
+            element={
+              <RequireAdmin>
+                <CreateBlog />
+              </RequireAdmin>
+            }
+          />
           <Route path="profile" element={<Profile />} />
           <Route path="myorder" element={<MyOrder />} />
           <Route
