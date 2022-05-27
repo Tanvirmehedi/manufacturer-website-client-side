@@ -40,6 +40,9 @@ const Dashboard = () => {
               <li>
                 <Link to="myprofile">Update profile</Link>
               </li>
+              <li>
+                <Link to="profile">Profile Details</Link>
+              </li>
             </div>
           </div>
           {/* -------------------------------------------------- */}

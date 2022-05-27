@@ -14,6 +14,7 @@ import RequireAuth from "./pages/Login/RequireAuth";
 import SignUp from "./pages/Login/SignUp";
 import AddAProduct from "./pages/ManageProduct/AddAProduct";
 import MyProfile from "./pages/MyProfile/MyProfile";
+import Profile from "./pages/MyProfile/Profile";
 import MyOrder from "./pages/Order/MyOrder";
 import PageNotFound from "./pages/PageNotFound";
 import Purchase from "./pages/Purchase/Purchase";
@@ -54,6 +55,7 @@ function App() {
             }
           />
           <Route path="myprofile" element={<MyProfile />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="myorder" element={<MyOrder />} />
           <Route
             path="allusers"

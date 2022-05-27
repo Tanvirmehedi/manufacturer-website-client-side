@@ -29,7 +29,7 @@ const MyProfile = () => {
       education,
     };
 
-    fetch(`http://localhost:5000/user/info/${email}`, {
+    fetch(`https://boiling-eyrie-02929.herokuapp.com/user/info/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
